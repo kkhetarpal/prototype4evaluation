@@ -46,3 +46,24 @@ class AlgorithmWrapper(PipelinePart):
             action: the action to execute in the environment from that state.
         """
         raise NotImplementedError('You must return an action here.')
+
+    def do_rollout(self, env, max_steps=1000):
+        """
+        Executes a rollout in the environment. This is the standard
+        way to record how well an agent performs in a rollout.
+        Args:
+            env: the environment to do the rollout in
+            max_steps: the maximum number of steps before premature
+                       termination
+        Returns:
+            a list containing rollout rewards at each step.
+        """
+        state = env.reset()
+        rollout_rewards = []
+        for _ in range(max_steps):
+            action = self.act(state)
+            state, reward, done, info = env.step(action)
+            rollout_rewards.append(reward)
+            if done:
+                break
+        return rollout_rewards
