@@ -1,0 +1,5 @@
+numpy
+gym[box2d]
+gym[classic_control]
+torch
+torchvision
