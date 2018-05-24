@@ -16,21 +16,12 @@ class Pipeline(BasePipeline):
     def _run_parallel(self):
         raise NotImplementedError('Future work.')
 
-    def start(self):
-        """
-        Creates an instance of the algorithm
-        Returns:
-            An Algorithm and an Evaluation Scheme.
-        """
-        # abstracted out so that we can eventually do this in parallel.
-        alg = self.algorithm_constructor(**self.algorithm_arguments)
-        eval = self.evaluation_constructor(**self.evaluation_arguments)
-        return alg, eval
-
     def run(self, training_steps):
-        algorithm, evaluation = self.start()
+        evaluation = self.evaluation_constructor(**self.evaluation_arguments)
 
         for rank in range(3):
+            algorithm = self.algorithm_constructor(**self.algorithm_arguments)
+
             for i in range(training_steps):
                 algorithm.train_step()
                 evaluation.measure_performance(algorithm,
