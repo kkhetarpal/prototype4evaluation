@@ -27,8 +27,16 @@ class Pipeline(BasePipeline):
         eval = self.evaluation_constructor(**self.evaluation_arguments)
         return alg, eval
 
-    def run(self, training_epochs):
+    def run(self, training_steps):
         algorithm, evaluation = self.start()
 
-        for i in range(training_epochs):
-            algorithm.train_step()
+        for rank in range(3):
+            for i in range(training_steps):
+                algorithm.train_step()
+                evaluation.measure_performance(algorithm,
+                                               is_training=True,
+                                               iteration=i,
+                                               env_rank=rank)
+
+        return evaluation.get_performance()
+

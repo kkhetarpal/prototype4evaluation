@@ -27,6 +27,8 @@ class AlgorithmWrapper(PipelinePart):
         """
         pass
 
+    def initialize_environment(self):
+        raise NotImplementedError('This is where you initialize your environment')
 
     def train_step(self):
         """
