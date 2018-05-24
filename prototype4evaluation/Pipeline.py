@@ -8,8 +8,8 @@ class Pipeline(BasePipeline):
                  evaluation_arguments,
                  repeats=5):
         super().__init__()
-        self.algorithm_constructor = evaluation_constructor
-        self.algorithm_arguments = evaluation_arguments
+        self.algorithm_constructor = algorithm_constructor
+        self.algorithm_arguments = algorithm_arguments
         self.evaluation_constructor = evaluation_constructor
         self.evaluation_arguments = evaluation_arguments
 
@@ -20,7 +20,9 @@ class Pipeline(BasePipeline):
         evaluation = self.evaluation_constructor(**self.evaluation_arguments)
 
         for rank in range(3):
-            algorithm = self.algorithm_constructor(**self.algorithm_arguments)
+            print('Replicate {}/{}'.format(rank+1, 3))
+            algorithm = self.algorithm_constructor(evaluation.environment_details,
+                                                   **self.algorithm_arguments)
 
             for i in range(training_steps):
                 algorithm.train_step()

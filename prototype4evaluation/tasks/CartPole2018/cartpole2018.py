@@ -7,13 +7,13 @@ from prototype4evaluation.tools.rl import calculate_return
 from collections import deque
 from collections import defaultdict
 import numpy as np
-
-# a default dict of lists.
-DefaultListDict = defaultdict(lambda : [])
+import gym
 
 class CartPole2018(EvaluationMechanism):
+    environment_details = {'env_name': 'CartPole-v0',
+                           'gamma': 0.99}
     last_five = deque([0]*5)
-    records = DefaultListDict()
+    records = defaultdict(lambda : [])
     def measure_performance(self,
                             algorithm,
                             is_training,
@@ -30,9 +30,10 @@ class CartPole2018(EvaluationMechanism):
         Returns:
 
         """
-
-        rollout_rewards = algorithm.do_rollout()
-        self.last_five.append(calculate_return(rollout_rewards))
+        cp_env = gym.make(self.environment_details['env_name'])
+        rollout_rewards = algorithm.do_rollout(cp_env)
+        self.last_five.append(calculate_return(rollout_rewards,
+                                               self.environment_details['gamma']))
         self.last_five.popleft()
         self.records[env_rank].append(np.mean(self.last_five))
 
