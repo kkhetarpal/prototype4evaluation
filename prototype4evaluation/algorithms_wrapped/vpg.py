@@ -9,6 +9,7 @@ from pg_methods.algorithms.REINFORCE import VanillaPolicyGradient
 from pg_methods.baselines import MovingAverageBaseline, NeuralNetworkBaseline
 from pg_methods.networks import MLP_factory
 from pg_methods.utils import experiment
+from prototype4evaluation.pipeline.algorithm import AlgorithmWrapper
 
 algorithm_hyperparameters = {
     'baseline': 'moving_average',
@@ -17,7 +18,6 @@ algorithm_hyperparameters = {
     'policy': 'multinomial'
 }
 
-from prototype4evaluation.pipeline.algorithm import AlgorithmWrapper
 
 class REINFORCEAlgorithm(AlgorithmWrapper):
     def __init__(self,
