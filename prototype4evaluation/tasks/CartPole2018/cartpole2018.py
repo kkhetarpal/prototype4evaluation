@@ -14,6 +14,11 @@ class CartPole2018(EvaluationMechanism):
                            'gamma': 0.99}
     last_five = deque([0]*5)
     records = defaultdict(lambda : [])
+    current_env_rank = 0
+    def __init__(self):
+        super().__init__()
+        self.env = gym.make(self.environment_details['env_name'])
+
     def measure_performance(self,
                             algorithm,
                             is_training,
@@ -30,8 +35,13 @@ class CartPole2018(EvaluationMechanism):
         Returns:
 
         """
-        cp_env = gym.make(self.environment_details['env_name'])
-        rollout_rewards = algorithm.do_rollout(cp_env)
+
+        if self.current_env_rank != env_rank:
+            self.last_five = deque([0]*5)
+            self.current_env_rank = env_rank
+
+        self.env.reset()
+        rollout_rewards = algorithm.do_rollout(self.env)
         self.last_five.append(calculate_return(rollout_rewards,
                                                self.environment_details['gamma']))
         self.last_five.popleft()
