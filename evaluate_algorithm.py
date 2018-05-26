@@ -16,5 +16,6 @@ if __name__ == '__main__':
                         evaluation_arguments,
                         repeats=5)
 
-    result = pipeline.run(100)
-    print(result)
+    evaluation_results = pipeline.run(100)
+    print(evaluation_results.records) # the raw curves
+    print(evaluation_results.get_performance()) # the summary

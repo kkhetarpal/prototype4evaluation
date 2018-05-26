@@ -31,5 +31,5 @@ class Pipeline(BasePipeline):
                                                iteration=i,
                                                env_rank=rank)
 
-        return evaluation.get_performance()
+        return evaluation
 
