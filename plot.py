@@ -15,6 +15,15 @@ def single_plot_data(data_x, data_y, xlabel, ylabel):
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
 
+def multi_plot_data(data_x, data_y, names, xlabel, ylabel):
+    """ data, names are lists of vectors """
+    plt.figure(figsize=(WIDTH,HEIGHT))
+    for i, y in enumerate(data_x):
+        plt.plot(data_x[i], data_y[i], '-', markersize=1, label=names[i])
+    plt.legend(prop={'size': 12}, numpoints=3)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+
 def plot_data_smooth(data_x, data_y, names, xlabel, ylabel, location,\
                                                             smoothing_window):
     """
@@ -59,7 +68,7 @@ def funky_csv_to_numpy(path):
     with open(path) as f:
         for line in f:
             l = line.rstrip('\n').split(",")
-            reward = l[4].split(":")[1]
+            reward = float(l[4].split(":")[1])
             data.append(reward)
     return np.array(data)
 
@@ -72,14 +81,27 @@ def plot_data(args):
     else:
         data_y = json_to_numpy(args.file)
 
-    xlabel="time steps"
-    ylabel="average return"
-    data_x = np.arange(0,len(data))
-
     # Plot
     plt.clf()
     plt.figure(figsize=(WIDTH,HEIGHT))
-    single_plot_data(data_x, data_y, names, xlabel, ylabel)
+    xlabel="time steps"
+    ylabel="average return"
+
+    # Single plot
+    if type(data_y) != list:
+        data_x = np.arange(0,len(data_y))
+        single_plot_data(data_x, data_y, xlabel, ylabel)
+    # Plot multiple
+    else:
+        names = []
+        data_x = []
+        for i in range(len(data_y)):
+            names.append(i)
+            x = np.arange(0,len(data_y[i]))
+            data_x.append(x)
+        multi_plot_data(data_x, data_y,names,"time steps", "average return")
+
+    # Save figure
     plt.savefig(args.save_name)
 
 if __name__ == '__main__':
