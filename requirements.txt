@@ -1,0 +1,3 @@
+numpy
+gym[box2d]
+gym[classic_control]
