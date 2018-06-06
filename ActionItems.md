@@ -9,7 +9,7 @@
             - [x] Set up a demonstrative Evaluation Pipeline - plug these algorithms in and test to show this case-study. Document this case-study - what are the problems one faces while comparing algorithm performances etc.
             
   - [ ]  **Second Milestone**
-       - [ ]  Real world, code bases are not so simple to reproduce so need abstraction via wrappers for test bench
-            - [ ] Each algorithm gets wrapped in a way it can be just ran by the test bench without knowing what is inside the algo
-            - [ ] Arguments are environment, metric to evaluate on, epochs, episodes, etc. 
+       - [x]  Real world, code bases are not so simple to reproduce so need abstraction via wrappers for test bench
+            - [x] Each algorithm gets wrapped in a way it can be just ran by the test bench without knowing what is inside the algo
+            - [x] Arguments are environment, metric to evaluate on, epochs, episodes, etc. 
        - [ ] Goal2: Prototype of an evaluation pipeline which Alice, Bob, and Rob go-to to evaluate different algorithms which follow the formats of wrappers..
