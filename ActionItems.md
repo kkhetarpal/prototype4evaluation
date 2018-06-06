@@ -3,10 +3,10 @@
 - [ ] Action Items 
   - [ ]  **First Milestone**
       - [x]  Take our existing simple algoroithm implementations and test it on each of these environments 
-            - [x] Khimya uploads DYNAQ, LSTD-lambda, Q-Learning
-            - [x] Zaf uploads Vanilla Policy Gradient
+        - [x] Khimya uploads DYNAQ, LSTD-lambda, Q-Learning
+        - [x] Zaf uploads Vanilla Policy Gradient
       - [x] Goal1: How do I go about comparing these algorithms - reproducibility in evaluation 
-            - [x] Set up a demonstrative Evaluation Pipeline - plug these algorithms in and test to show this case-study. Document this case-study - what are the problems one faces while comparing algorithm performances etc.
+        - [x] Set up a demonstrative Evaluation Pipeline - plug these algorithms in and test to show this case-study. Document this case-study - what are the problems one faces while comparing algorithm performances etc.
             
   - [ ]  **Second Milestone**
        - [x]  Real world, code bases are not so simple to reproduce so need abstraction via wrappers for test bench
