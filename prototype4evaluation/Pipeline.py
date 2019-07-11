@@ -12,6 +12,7 @@ class Pipeline(BasePipeline):
         self.algorithm_arguments = algorithm_arguments
         self.evaluation_constructor = evaluation_constructor
         self.evaluation_arguments = evaluation_arguments
+        self.repeats = repeats
 
     def _run_parallel(self):
         raise NotImplementedError('Future work.')
@@ -19,7 +20,7 @@ class Pipeline(BasePipeline):
     def run(self, training_steps):
         evaluation = self.evaluation_constructor(**self.evaluation_arguments)
 
-        for rank in range(3):
+        for rank in range(self.repeats):
             print('Repeat {}/{}'.format(rank+1, 3))
             algorithm = self.algorithm_constructor(evaluation.environment_details,
                                                    **self.algorithm_arguments)
