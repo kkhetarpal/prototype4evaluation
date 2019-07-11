@@ -1,6 +1,6 @@
 from prototype4evaluation.tasks.CartPole2018.cartpole2018 import CartPole2018
-from prototype4evaluation.algorithms_wrapped.random import RandomAlgorithm
-from prototype4evaluation.algorithms_wrapped.vpg import REINFORCEAlgorithm, algorithm_hyperparameters
+#from prototype4evaluation.algorithms_wrapped.random import RandomAlgorithm
+#from prototype4evaluation.algorithms_wrapped.vpg import REINFORCEAlgorithm, algorithm_hyperparameters
 from prototype4evaluation.algorithms_wrapped.dqn import DQNAlgorithm, algorithm_hyperparameters
 from prototype4evaluation.Pipeline import Pipeline
 
