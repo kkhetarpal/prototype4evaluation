@@ -1,3 +1,31 @@
+# Installation
+
+Assumes a clean install of Ubuntu 18.04 LTS
+
+- Install deps
+
+```bash
+sudo apt update
+sudo apt install python3-dev python3-pip
+sudo pip3 install -U virtualenv  # system-wide install
+```
+
+- Create virtualenv
+
+```bash
+virtualenv --system-site-packages -p python3 ./p4e_env
+```
+
+- Source environment and install deps
+
+```bash
+pip3 install --upgrade tensorflow(-gpu)
+pip3 install keras-rl
+pip3 install numpy
+pip3 install 'gym[box2d]'
+pip3 install 'gym[classic_control]'
+```
+
 # Framework agnostic example scripts
 
 
