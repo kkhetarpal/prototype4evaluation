@@ -20,7 +20,7 @@ class Pipeline(BasePipeline):
         evaluation = self.evaluation_constructor(**self.evaluation_arguments)
 
         for rank in range(3):
-            print('Replicate {}/{}'.format(rank+1, 3))
+            print('Repeat {}/{}'.format(rank+1, 3))
             algorithm = self.algorithm_constructor(evaluation.environment_details,
                                                    **self.algorithm_arguments)
 
